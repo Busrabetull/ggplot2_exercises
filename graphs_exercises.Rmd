@@ -1,0 +1,137 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+## Bar Plot (Sütun Grafik)
+
+```{r}
+
+df <- diamonds
+glimpse(df)
+
+
+
+
+```
+```{r}
+glimpse(df)
+
+ggplot(df, aes(cut)) +
+  geom_bar()
+
+
+ggplot(df, aes(cut, fill = color)) +
+  geom_bar(position =  position_dodge()) +
+  ggtitle("Bu grafik benim görselleştirdiğim ilk veridir") +
+  xlab("pırlanta kaliteleri") +
+  ylab("gözlenme sıklıkları")
+
+
+```
+
+
+#Histogram ve Yoğunluk
+
+##Histogram
+sürekli değişkeni görselleştirmek istediğimizde en çok kullanılan tekniklerden birisidir.
+
+```{r}
+
+glimpse(df)
+
+
+ggplot(df, aes(price)) +
+  geom_histogram(binwidth = 1000, fill = "purple" )
+
+
+```
+
+```{r}
+
+ggplot(df, aes(price)) +
+  geom_histogram(binwidth = 1000, fill = "purple" ) +
+    theme(panel.background = element_rect(fill = "red"))
+
+           
+
+
+
+```
+
+
+
+```{r}
+
+
+ggplot(df, aes(price)) + 
+  geom_histogram(aes(y = ..density..)) +
+  geom_density()
+
+
+
+
+ggplot(df, aes(price)) + 
+  geom_histogram(aes(y = after_stat(density))) +
+  geom_density(alpha = .7, fill = "orange" )
+
+
+
+
+
+```
+```{r}
+
+
+ggplot(df, aes(x = price))  + 
+  geom_histogram() +
+  facet_grid(cut ~. ) +
+  theme(strip.background = element_rect(fill = "orange"))
+
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(df, aes(x = price)) + 
+  geom_histogram() +
+  facet_grid(cut ~ .) +
+  theme(
+    strip.background = element_rect(fill = "orange"),  # Facet etiketlerinin arka plan rengi
+    panel.background = element_rect(fill = "lightblue")  # Grafiğin arka plan rengi
+  )
+
+
+
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(df, aes(price)) + 
+  geom_histogram(fill = "black", color = "white") +
+  facet_grid(cut ~ .) +
+  theme(
+    strip.background = element_rect(fill = "pink"),
+    panel.background = element_rect(fill = "lightblue") 
+  ) + 
+  
+  ggtitle("Ayrık Grafik") +
+  xlab("fiyat") +
+  ylab("miktar")
+
+  
+
+```
+
+#Dağılım- Ridgeline
+
+```{r}
+
+library(ggridges)
+
+
+
+
+```
+
+
